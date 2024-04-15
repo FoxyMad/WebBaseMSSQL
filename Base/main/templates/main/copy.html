@@ -1,0 +1,93 @@
+{% extends 'main/layout.html' %}
+
+{% block title %}Копирование{% endblock %}
+
+{% block content %}
+<div class="container px-4 py-5">
+<h2 class="animate__animated animate__pulse">Резервное копирование</h2>
+<hr>
+<div class="row g-4 py-5 row-cols-1 row-cols-lg-2">
+      <div class="col d-flex align-items-start">
+        <div class="icon-square text-body-emphasis bg-body-secondary d-inline-flex align-items-center justify-content-center fs-4 flex-shrink-0 me-3">
+          <svg class="bi" width="1em" height="1em"></svg>
+        </div>
+        <div>
+          <h3 class="fs-4 text-body-emphasis">Создание расписания</h3>
+          <p>Создать расписание для резервного копирования базы данных.</p>
+        <div class="modal-content rounded-4 shadow ">
+            <div class="form-check m-2">
+            <input class="form-check-input" type="checkbox" value="" id="flex1">
+                <label class="form-check-label" for="flex1">
+                 Понедельник
+                 </label>
+        </div>
+            <div class="form-check m-2">
+            <input class="form-check-input" type="checkbox" value="" id="flex2" >
+                <label class="form-check-label" for="flex2">
+                 Вторник
+                 </label>
+        </div>
+            <div class="form-check m-2">
+            <input class="form-check-input" type="checkbox" value="" id="flex3">
+                <label class="form-check-label" for="flex3">
+                 Среда
+                 </label>
+        </div>
+            <div class="form-check m-2">
+            <input class="form-check-input" type="checkbox" value="" id="flex4">
+                <label class="form-check-label" for="flex4">
+                 Четверг
+                 </label>
+        </div>
+            <div class="form-check m-2">
+            <input class="form-check-input" type="checkbox" value="" id="flex5" >
+                <label class="form-check-label" for="flex5">
+                 Пятница
+                 </label>
+        </div>
+            <div class="form-check m-2">
+            <input class="form-check-input" type="checkbox" value="" id="flex6" >
+                <label class="form-check-label" for="flex6">
+                 Суббота
+                 </label>
+        </div>
+        <div class="form-check m-2">
+            <input class="form-check-input" type="checkbox" value="" id="flex7">
+            <label class="form-check-label" for="flex7">
+                 Воскресенье
+            </label>
+        </div>
+        </div>
+             <p>
+                <label for="date">Выберите время: </label>
+                <input type="time" id="date" name="time"/>
+            </p>
+
+            <a href="{% url 'dump' %}" class='btn btn-info'>
+              Подтвердить
+          </a>
+        </div>
+      </div>
+      <div class="col d-flex align-items-start">
+        <div class="icon-square text-body-emphasis bg-body-secondary d-inline-flex align-items-center justify-content-center fs-4 flex-shrink-0 me-3">
+          <svg class="bi" width="1em" height="1em"></svg>
+        </div>
+
+        <div>
+            <div>
+          <h3 class="fs-4 text-body-emphasis">Создание копии базы данных</h3>
+          <p>Создать резервную копию существующей базы данных.</p>
+          <a href="{% url 'dump' %}" class='btn btn-info'>
+              Создать
+          </a>
+        </div>
+          <h3 class="fs-4 text-body-emphasis">Восстановление базы</h3>
+          <p> Восстановить базу данных из последней резервной копии в случае утери данных.</p>
+          <a href="{% url 'load' %}" class='btn btn-info'>
+              Восстановить
+          </a>
+        </div>
+      </div>
+</div>
+        </div>
+{% endblock %}

@@ -1,0 +1,54 @@
+{% extends 'main/layout.html' %}
+
+{% block title %}Справочники{% endblock %}
+
+{% block content %}
+<div class="container px-4 py-5">
+<h2 class="animate__animated animate__pulse">Справочники</h2>
+<hr>
+    <div class="row">
+        <div class = "col-4">
+            <div class="d-flex flex-column flex-md-row p-3 gap-3 py-md-3 align-items-left justify-content-left">
+                <div class="list-group list-group-checkable d-grid gap-1 border-0">
+            <a href="{% url 'directory1' %}" class='btn btn-info'>
+              Страны
+            </a>
+            <a href="{% url 'directory2' %}" class='btn btn-info'>
+              Типы объектов основных средств
+            </a>
+                </div>
+            </div>
+        </div>
+        <div class="col-7">
+                  {% if countries.count > 0 %}
+           <div class="modal-content rounded-4 shadow m-4">
+            <h2>Cправочник "Страны"</h2>
+                      <table class="table mx-auto" style="width: 400px;" >
+                         <thead><th>Наименование</th><th>Код страны</th></thead>
+                         {% for countries1 in countries %}
+                             <tr>
+                                <td>{{ countries1.country_name }}</td>
+                                <td>{{ countries1.country_code }}</td>
+                            </tr>
+                        {% endfor %}
+                    </table>
+            </div>
+                {% endif %}
+                  {% if types.count > 0 %}
+             <div class="modal-content rounded-4 shadow m-4 ">
+            <h2>Cправочник "Тип объектов основных средств"</h2>
+                     <table class="table mx-auto" style="width: 400px;">
+                         <thead><th>Наименование</th></thead>
+                         {% for types1 in types %}
+                             <tr>
+                                <td>{{ types1.type_name }}</td>
+                            </tr>
+                        {% endfor %}
+                    </table>
+             </div>
+                {% endif %}
+        </div>
+    </div>
+</div>
+<script src="/docs/5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+{% endblock %}

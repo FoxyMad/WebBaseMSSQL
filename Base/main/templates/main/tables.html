@@ -1,0 +1,41 @@
+{% extends 'main/layout.html' %}
+
+{% block title %}Работа с данными{% endblock %}
+
+{% block content %}
+
+ <div class="container px-4 py-5" id="hanging-icons">
+    <h2 class="animate__animated animate__pulse"> Работа с данными</h2>
+   <hr>
+    <div class="row g-4 py-5 row-cols-1 row-cols-lg-2">
+      <div class="col d-flex align-items-start">
+        <div class="icon-square text-body-emphasis bg-body-secondary d-inline-flex align-items-center justify-content-center fs-4 flex-shrink-0 me-3">
+          <svg class="bi" width="1em" height="1em"></svg>
+        </div>
+        <div>
+          <h3 class="fs-4 text-body-emphasis">Поиск</h3>
+          <p>Переход на страницу, предназначенную для поиска таблицы или записи для просмотра.</p>
+          <a href="{% url 'search' %}" class="btn btn-info">
+            Перейти
+          </a>
+        </div>
+      </div>
+      <div class="col d-flex align-items-start">
+        <div class="icon-square text-body-emphasis bg-body-secondary d-inline-flex align-items-center justify-content-center fs-4 flex-shrink-0 me-3">
+          <svg class="bi" width="1em" height="1em"></svg>
+        </div>
+        <div>
+          <h3 class="fs-4 text-body-emphasis">Добавление и редактирование данных</h3>
+          <p> Переход на страницу, предназначенную для добавления новых записей в существующую таблицу в базе данных, а также их изменение или удаление.</p>
+          <a href="{% url 'add_object' %}" class="btn btn-info">
+            Перейти
+          </a>
+        </div>
+      </div>
+
+        </div>
+      </div>
+
+
+
+{% endblock %}

@@ -1,0 +1,93 @@
+{% extends 'main/layout.html' %}
+
+{% block title %}Добавление объекта{% endblock %}
+
+{% block content %}
+<div class="container px-4 py-5" >
+    <h2 class="animate__animated animate__pulse"> Добавление объекта </h2>
+ <hr>
+<form method="POST" action="create/">
+        {% csrf_token %}
+    <div class="container px-5 py-3">
+    <div class="row">
+         <h5>Таблица: "Основные средства"</h5>
+        <div class="col-4">
+        <p>
+            <label>Тип объекта</label><br>
+            <input class="form-control" type="text" name="type" />
+        </p>
+        <p>
+            <label>Наименование</label><br>
+            <input class="form-control" type="text" name="name" />
+        </p>
+        <p>
+            <label>Количество</label><br>
+            <input class="form-control" type="text" name="amount" />
+        </p>
+             <p>
+            <label>Инвентарный номер</label><br>
+            <input class="form-control" type="text" name="inventory_number" />
+        </p>
+        </div>
+        <div class="col-4">
+        <p>
+            <label>Заводской номер</label><br>
+            <input class="form-control" type="text" name="manufacture_number" />
+        </p>
+        <p>
+            <label>Остаточная стоимость</label><br>
+            <input class="form-control" type="text" name="residual_value" />
+        </p>
+       <p>
+            <label>Дата производства</label><br>
+            <input class="form-control" type="date" name="date_of_manufacture" />
+        </p>
+        <p>
+            <label>Дата передачи</label><br>
+            <input class="form-control" type="date" name="date_of_purchase" />
+        </p>
+        </div>
+        <div class="col-4">
+        <p>
+            <label>Номер договора</label><br>
+            <input class="form-control" type="text" name="contract_number" />
+        </p>
+        <p>
+            <label>Страна производства</label><br>
+            <input class="form-control" type="text" name="country_of_manufacture" />
+        </p>
+             <input class='btn btn-secondary' type="submit" value="Провести и сохранить" >
+        </div>
+        </div>
+    </div>
+    </form>
+<div class="row">
+{% if computers.count > 0 %}
+            <div class="modal-content rounded-4 shadow m-3">
+        <h5>Ваша таблица:</h5>
+
+        <table class="table">
+           <thead><th>Тип объекта</th><th>Наименование</th><th>Количество</th><th>Инвентарный номер</th><th>Заводской номер</th><th>Остаточная стоимость</th><th>Дата производства</th><th>Дата покупки</th><th>Номер договора</th><th>Страна производства</th></thead>
+         {% for computers1 in computers %}
+        <tr>
+            <td>{{ computers1.type }}</td>
+            <td>{{ computers1.name }}</td>
+            <td>{{ computers1.amount }}</td>
+            <td>{{ computers1.inventory_number }}</td>
+            <td>{{ computers1.manufacture_number }}</td>
+            <td>{{ computers1.residual_value }}</td>
+            <td>{{ computers1.date_of_manufacture|date:"SHORT_DATE_FORMAT" }}</td>
+            <td>{{ computers1.date_of_purchase|date:"SHORT_DATE_FORMAT" }}</td>
+            <td>{{ computers1.contract_number }}</td>
+            <td>{{ computers1.country_of_manufacture }}</td>
+            <td><a href="edit/{{computers1.id}}">Изменить</a> | <a href="delete/{{computers1.id}}">Удалить</a></td>
+        </tr>
+        {% endfor %}
+        </table>
+                </div>
+ {% endif %}
+</div>
+</div>
+
+
+{% endblock %}

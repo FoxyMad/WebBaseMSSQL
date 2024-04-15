@@ -1,0 +1,52 @@
+{% extends 'main/layout.html' %}
+
+{% block title %}Поиск таблицы{% endblock %}
+
+{% block content %}
+<div class="container px-4 py-5" id="hanging-icons">
+    <h2 class="animate__animated animate__pulse"> Поиск таблицы</h2>
+   <hr>
+<div class="container px-5 py-3">
+     <div class="row"><h5>Поиск возможен по наименованию, типу или инвентарному номеру</h5>
+        <h3>Введите запрос</h3>
+
+      <div class="col-6">
+          <form class="d-flex" method="POST" action="{% url 'search' %}">
+              {% csrf_token %}
+
+                <div class="form-outline">
+                    <input type="search" id="form1" class="form-control" name="searched"/>
+                     <button class='btn btn-info' type="submit"> Найти </button>
+                </div>
+          </form>
+      </div>
+
+              {% if searched %}
+         <div class="modal-content rounded-4 shadow">
+                <h4>Результат поиска по запросу: {{ searched }}</h4>
+              <hr>
+               <table class="table">
+                   <thead><th>Тип</th><th>Наименование</th><th>Количество</th><th>Инвентарный №</th><th>Заводской №</th><th>Остаточная стоимость</th><th>Дата производства</th><th>Дата ввода в эксплуатацию</th><th>№ Договора</th><th>Страна производства</th></thead>
+                {% for item in rec %}
+                   <tr>
+                       <td> {{ item.type }}</td>
+                       <td>  {{ item.name }}</td>
+                       <td>  {{ item.amount }}</td>
+                       <td>{{ item.inventory_number }}</td>
+                        <td>{{ item.manufacture_number }}</td>
+                        <td>{{ item.residual_value }}</td>
+                        <td>{{ item.date_of_manufacture|date:"SHORT_DATE_FORMAT" }}</td>
+                        <td>{{ item.date_of_purchase|date:"SHORT_DATE_FORMAT" }}</td>
+                        <td>{{ item.contract_number }}</td>
+                        <td>{{ item.country_of_manufacture }}</td>
+                   </tr>
+                {% endfor %}
+               </table>
+              {% endif %}
+          </div>
+         </div>
+    </div>
+</div>
+
+
+{% endblock %}

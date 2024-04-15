@@ -1,0 +1,20 @@
+{% extends 'main/layout.html' %}
+{% load static %}
+{% block title %}Главная страница{% endblock %}
+
+{% block content %}
+
+<div class="cont">
+<h1>Добро пожаловать на WeBase!</h1>
+    <h4>Интерфейс для управления вашей базой данных</h4>
+
+</div>
+
+<style>
+  body {
+    background-image: url('{% static 'main/img/fon2.png' %}');
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+</style>
+{% endblock %}

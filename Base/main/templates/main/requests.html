@@ -1,0 +1,64 @@
+{% extends 'main/layout.html' %}
+
+{% block title %}Отчеты{% endblock %}
+
+{% block content %}
+<div class="container px-4 py-5" id="hanging-icons" xmlns="http://www.w3.org/1999/html">
+<h2 class="animate__animated animate__pulse">Создать отчет</h2>
+    <hr>
+    <div class="row">
+    <h3 class="fs-4 text-body-emphasis">Создать отчет по таблице: </h3>
+    <a class = "os" href="javascript:PopUpShow()">Основные средства</a>
+</div>
+    </div>
+<div class="b-popup" id="popup1">
+    <div class="b-popup-content">
+       Отчет по таблице "Основные средства":
+<form method="POST" action="tmplt/">
+    {% csrf_token %}
+
+      {% if computers3.count > 0 %}
+        <table class="table">
+           <thead><th>Тип объекта</th><th>Наименование</th><th>Количество</th><th>Инвентарный номер</th><th>Заводской номер</th><th>Остаточная стоимость</th><th>Дата производства</th><th>Дата покупки</th><th>Номер договора</th><th>Страна производства</th></thead>
+         {% for computers2 in computers3 %}
+
+        <tr>
+            <td>{{ computers2.type }}</td>
+            <td>{{ computers2.name }}</td>
+            <td>{{ computers2.amount }}</td>
+            <td>{{ computers2.inventory_number }}</td>
+            <td>{{ computers2.manufacture_number }}</td>
+            <td>{{ computers2.residual_value }}</td>
+            <td>{{ computers2.date_of_manufacture|date:"SHORT_DATE_FORMAT" }}</td>
+            <td>{{ computers2.date_of_purchase|date:"SHORT_DATE_FORMAT" }}</td>
+            <td>{{ computers2.contract_number }}</td>
+            <td>{{ computers2.country_of_manufacture }}</td>
+        </tr>
+        {% endfor %}
+            </table>
+ {% endif %}
+   <hr>
+             <a href="javascript:PopUpHide()" class="btn btn-secondary">
+                 Закрыть </a>
+    <a href="print_users/" class="btn btn-secondary">  Печать </a>
+</form>
+
+
+
+        </div>
+    </div>
+
+<script>
+    $(document).ready(function(){
+               PopUpHide();
+    });
+      function PopUpShow(){
+        $("#popup1").show();
+    }
+       function PopUpHide(){
+        $("#popup1").hide();
+    }
+</script>
+
+</div>
+{% endblock %}

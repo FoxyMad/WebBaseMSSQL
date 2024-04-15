@@ -1,0 +1,68 @@
+{% extends 'main/layout.html' %}
+{% load static %}
+{% block title %}Редактирование информации{% endblock %}
+
+{% block content %}
+<div class="container px-4 py-5" id="hanging-icons">
+    <h2 class="animate__animated animate__pulse"> Изменить запись</h2>
+ <hr>
+<form method="POST">
+        {% csrf_token %}
+    <div class="row">
+        <div class="col-4">
+        <p>
+            <label>Тип техники</label><br>
+            <input class="form-control" type="text" name="type" value="{{computers1.type}}" />
+        </p>
+        <p>
+            <label>Наименование</label><br>
+            <input class="form-control" type="text" name="name" value="{{computers1.name}}" />
+        </p>
+        <p>
+            <label>Количество</label><br>
+            <input class="form-control" type="text" name="amount" value="{{computers1.amount}}" />
+        </p>
+        <p>
+            <label>Введите инвентарный номер</label><br>
+            <input class="form-control" type="number" name="inventory_number" value="{{computers1.inventory_number}}" />
+        </p>
+         <p>
+            <label>Заводской номер</label><br>
+            <input class="form-control" type="text" name="manufacture_number" value="{{computers1.manufacture_number}}" />
+        </p>
+        </div>
+        <div class="col-4">
+        <p>
+            <label>Остаточная стоимость</label><br>
+            <input class="form-control" type="text" name="residual_value" value="{{computers1.residual_value}}" />
+        </p>
+        <p>
+            <label>Дата производства</label><br>
+            <input class="form-control" type="date" name="date_of_manufacture" value="{{computers1.date_of_manufacture}}" />
+        </p>
+            <p>
+            <label>Дата передачи</label><br>
+            <input class="form-control" type="date" name="date_of_purchase" value="{{computers1.date_of_purchase}}" />
+        </p>
+            <p>
+            <label>Номер договора</label><br>
+            <input class="form-control" type="text" name="contract_number" value="{{computers1.contract_number}}" />
+        </p>
+            <p>
+            <label>Страна производства</label><br>
+            <input class="form-control" type="text" name="country_of_manufacture" value="{{computers1.country_of_manufacture}}" />
+        </p>
+        </div>
+        <div class="row">
+        <div class="col-4">
+        <input class='btn btn-secondary' type="submit" value="Провести и сохранить" >
+        </div>
+            <div class="col-4">
+        <input class='btn btn-secondary' type="reset" value="Отмена" >
+            </div>
+        </div>
+    </form>
+
+</div>
+
+{% endblock %}
